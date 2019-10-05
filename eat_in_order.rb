@@ -3,12 +3,12 @@ require "./menu"
 
 def eat_in
 
-food1 = Food.new(name: "海鮮丼", price: 980)
-food2 = Food.new(name: "釜揚げうどん（並）", price:264 )
-food3 = Food.new(name: "ラーメン", price: 655)
-drink1 = Drink.new(name: "greentea", price: 100)
-drink2 = Drink.new(name: "コーヒー", price: 290)
-drink3 = Drink.new(name: "生ビール", price: 500)
+food1 = Menu.new(name: "海鮮丼", price: 980, type:"Food")
+food2 = Menu.new(name: "釜揚げうどん（並）", price:264, type:"Food" )
+food3 = Menu.new(name: "ラーメン", price: 655, type:"Food")
+drink1 = Menu.new(name: "greentea", price: 100, type:"Drink")
+drink2 = Menu.new(name: "コーヒー", price: 290, type:"Drink")
+drink3 = Menu.new(name: "生ビール", price: 500, type:"Alcohol Drink")
 
 menus = [food1, food2, food3, drink1, drink2, drink3]
 
@@ -58,9 +58,9 @@ puts <<~text
 -------------------------------------
 text
 
-pey = gets.chomp.to_i
+command = gets.chomp.to_i
 
-if  pey == 1
+if  command == 1
   puts "ありがとうございました！"
 else
   puts "#{(selected_menu.get_total_price_10(count)*0.05).to_i}円　還元です！

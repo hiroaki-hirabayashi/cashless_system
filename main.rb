@@ -1,27 +1,25 @@
 require "./menu"
 require "./eat_in_order"
 require "./takeout_order"
-require "date"
-day = Date.today
-time = DateTime.now
-puts "---------------------------------------"
-puts(day)
-print(time.hour,"時",time.min,"分",time.sec,"秒\n")
 
 
 index = 0
 puts <<~text
 -------------------------------------
-いらっしゃいませ！！！　
-ご利用方法は？
-#{index += 1}.店内　#{index += 1}.持ち帰り
+いらっしゃいませ！
+店内をご利用されますか？それともお持ち帰りでしょうか？
+
+#{index += 1}.店内
+#{index += 1}.持ち帰り
 -------------------------------------
+コマンドを入力：
+
 text
 
-pey = gets.chomp.to_i
+command = gets.chomp.to_i
 
-if  pey == 1
+if  command == 1
    eat_in
-elsif pey == 2
+elsif command == 2
   takeout
 end
