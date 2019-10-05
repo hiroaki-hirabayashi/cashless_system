@@ -7,7 +7,7 @@ class Menu
   end
 
   def info
-    return "#{self.name} #{self.price}円 (#{self.eat})"
+    return "#{self.name} #{self.price}円 "
   end
 
   def get_total_price_8(count)
@@ -22,32 +22,20 @@ end
 
 
 class Food < Menu
-  attr_accessor :eat
+  attr_accessor :name, :price
 
-  def initialize(name:, price:, eat:)
+  def initialize(name:, price:)
     super(name: name, price: price)
-    self.eat = eat
   end
-
-  def info
-    return "#{self.name} #{self.price}円 (#{self.eat})"
-  end
-
-
 
 end
 
+
 class Drink < Menu
-  attr_accessor :eat
+  attr_accessor :name, :price
 
-  def initialize(name:, price:, eat:)
+  def initialize(name:, price:)
     super(name: name, price: price)
-    self.eat = eat
   end
-
-  def info
-    return "#{self.name} #{self.price}円 (#{self.eat})"
-  end
-
 
 end
