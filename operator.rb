@@ -14,8 +14,5 @@ puts <<~text
 text
 
 command = gets.chomp.to_i
-if  command == 1
-  diner
-elsif command == 2
-  fastfood
-end
+ (command == 1)? diner : fastfood
+  

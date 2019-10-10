@@ -14,16 +14,12 @@ def fastfood
   text
 
   command = gets.chomp.to_i
-  if  command == 1
-    eat_in
-  elsif command == 2
-    takeout
-  end
+  (command == 1)? fastfood_eat_in : fastfood_takeout
 end
 
 
 
-def eat_in
+def fastfood_eat_in
   puts <<~text
   -------------------------------------
   ご注文をどうぞ！！
@@ -31,7 +27,7 @@ def eat_in
   text
 
   index = 0
-  @f_menus.each do |menu|
+  @fast_menus.each do |menu|
     puts "#{index += 1}. #{menu.info}"
   end
 
@@ -42,7 +38,7 @@ def eat_in
   text
 
   order = gets.chomp.to_i - 1
-  selected_menu = @f_menus[order]
+  selected_menu = @fast_menus[order]
   puts <<~text
   -------------------------------------
   選択商品：#{selected_menu.name}
@@ -56,7 +52,7 @@ def eat_in
   puts <<~text
   商品：#{selected_menu.name}
   個数：#{count}個
-  お会計は#{selected_menu.get_total_price_10(count)}円(消費税10%)です!!
+  お会計は#{selected_menu.tax10(count)}円(消費税10%)です!!
   -------------------------------------
   お支払いは
   1.現金？　2.クレジットカード？  3.デビットカード？  4.プリペイドカード？　5.バーコード決済
@@ -67,20 +63,20 @@ def eat_in
 
   if    command >= 2
     puts <<~text
-    ポイントは#{(selected_menu.get_total_price_10(count)*0.02).to_i}円分(5%分)を還元します！
+    ポイントは#{(selected_menu.tax10(count)*0.02).to_i}円分(5%分)を還元します！
     ありがとうございました！
     text
   elsif  command == 1
     loop do
       puts "お支払い金額を入力してください"
       bill = gets.chomp.to_i
-      if bill > selected_menu.get_total_price_10(count)
+      if bill > selected_menu.tax10(count)
         puts <<~text
-        #{bill}円のお預かりなので#{bill - selected_menu.get_total_price_10(count)}円のお返しです！
+        #{bill}円のお預かりなので#{bill - selected_menu.tax10(count)}円のお返しです！
         ありがとうございました！
         text
         break
-      elsif bill < selected_menu.get_total_price_10(count)
+      elsif bill < selected_menu.tax10(count)
         puts "金額が不足してます"
         puts "もう一度"
         redo
@@ -89,7 +85,7 @@ def eat_in
   end
 end
 
-def takeout
+def fastfood_takeout
   puts <<~text
   -------------------------------------
   ご注文をどうぞ！！
@@ -97,7 +93,7 @@ def takeout
   text
 
   index = 0
-  @f_menus.each do |menu|
+  @fast_menus.each do |menu|
     puts "#{index += 1}. #{menu.info}"
   end
 
@@ -108,7 +104,7 @@ def takeout
   text
 
   order = gets.chomp.to_i - 1
-  selected_menu = @f_menus[order]
+  selected_menu = @fast_menus[order]
   puts <<~text
   -------------------------------------
   選択商品：#{selected_menu.name}
@@ -122,7 +118,7 @@ def takeout
   puts <<~text
   商品：#{selected_menu.name}
   個数：#{count}個
-  お会計は#{selected_menu.get_total_price_8(count)}円(消費税8%)です!!
+  お会計は#{selected_menu.tax8(count)}円(消費税8%)です!!
   -------------------------------------
   お支払いは
   1.現金？　2.クレジットカード？  3.デビットカード？  4.プリペイドカード？　5.バーコード決済
@@ -132,20 +128,20 @@ def takeout
   command = gets.chomp.to_i
   if    command >= 2
     puts <<~text
-    ポイントは#{(selected_menu.get_total_price_8(count)*0.02).to_i}円分(5%分)を還元します！
+    ポイントは#{(selected_menu.tax8(count)*0.02).to_i}円分(5%分)を還元します！
     ありがとうございました！
     text
   elsif  command == 1
     loop do
       puts "お支払い金額を入力してください"
       bill = gets.chomp.to_i
-      if bill > selected_menu.get_total_price_8(count)
+      if bill > selected_menu.tax8(count)
         puts <<~text
-        #{bill}円のお預かりなので#{bill - selected_menu.get_total_price_8(count)}円のお返しです！
+        #{bill}円のお預かりなので#{bill - selected_menu.tax8(count)}円のお返しです！
         ありがとうございました！
         text
         break
-      elsif bill < selected_menu.get_total_price_8(count)
+      elsif bill < selected_menu.tax8(count)
         puts "金額が不足してます"
         puts "もう一度"
         redo
