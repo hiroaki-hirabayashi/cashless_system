@@ -1,4 +1,5 @@
 require "./operator"
+@operator = Operator.new
 
 puts <<~text
 -------------------------------------

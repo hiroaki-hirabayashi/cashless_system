@@ -12,17 +12,6 @@ class Menu
     return "#{@name} #{@price}円 #{@type}"
   end
 
-  # 　　　#消費税8%
-  def tax8(count)
-    tax8 = (@price * count * 1.08).to_i
-  end
-
-  #消費税10%
-  def tax10(count)
-    tax10 = (@price * count * 1.1).to_i
-  end
-end
-
 
 #ファストフードメニュー一覧表示　
 def fastfood_menus_report
@@ -33,11 +22,14 @@ def fastfood_menus_report
   f_drink1 = Menu.new(name: "コーラ", price: 220, type:"Drink")
   f_drink2 = Menu.new(name: "シェイク", price: 290, type:"Drink")
   @fast_menus = [f_food1, f_food2, f_food3, f_food4, f_drink1, f_drink2]
-    index = 0
-  @fast_menus.each do |menu|
-    puts "#{index += 1}. #{menu.info}"
+
+    @fast_menus.each.with_index(1) { |menu, i| puts "#{i}. #{menu.info}" }
+
+  # index = 0
+  # @fast_menus.each do |menu|
+  # puts "#{index += 1}. #{menu.info}"
   end
-end
+
 
 #食堂メニュー一覧表示　
 def diner_menus_report
