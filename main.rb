@@ -1,16 +1,16 @@
 require "./operator"
-@operator = Operator.new
+@flag = Operator.new
 
 puts <<~text
 -------------------------------------
 どちらで食事にしますか？
-食堂に行きますか？　ファストフード店にしますか？
+店内にしますか？　持ち帰りにしますか？
 
-1.食堂             :還元ポイント5%実施店
-2.ファストフード店 :還元ポイント2%実施店
+1.店内
+2.持ち帰り
 -------------------------------------
 コマンドを入力：
 text
 
 command = gets.chomp.to_i
- (command == 1)? @operator.diner : @operator.fastfood
+ (command == 1)? @flag.eat_in : @flag.takeout
