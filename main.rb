@@ -1,11 +1,10 @@
-require "./menu"
-require "./eat_in_order"
-require "./takeout_order"
+require "./operator"
+@flag = Operator.new
 
 puts <<~text
 -------------------------------------
-いらっしゃいませ！
-店内をご利用されますか？それともお持ち帰りでしょうか？
+どちらで食事にしますか？
+店内にしますか？　持ち帰りにしますか？
 
 1.店内
 2.持ち帰り
@@ -14,9 +13,4 @@ puts <<~text
 text
 
 command = gets.chomp.to_i
-
-if  command == 1
-   eat_in
-elsif command == 2
-  takeout
-end
+ (command == 1)? @flag.eat_in : @flag.takeout
